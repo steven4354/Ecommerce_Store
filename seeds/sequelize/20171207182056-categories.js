@@ -4,21 +4,14 @@ let faker = require("faker");
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    let users = [];
+    let categories = [];
     for (let i = 0; i < 3; i++) {
-      let randomUsername = faker.internet.userName();
-      let randomEmail = faker.internet.email();
-      let randomFname = faker.name.firstName();
-      let randomLname = faker.name.lastName();
-      users.push({
-        username: randomUsername,
-        email: randomEmail,
-        fname: randomFname,
-        lname: randomLname
+      categories.push({
+        name: faker.commerce.department(),
       });
     }
 
-    return queryInterface.bulkInsert("Users", users);
+    return queryInterface.bulkInsert("Categories", categories);
   },
 
   down: (queryInterface, Sequelize) => {}

@@ -6,15 +6,12 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     let users = [];
     for (let i = 0; i < 3; i++) {
-      let randomUsername = faker.internet.userName();
-      let randomEmail = faker.internet.email();
-      let randomFname = faker.name.firstName();
-      let randomLname = faker.name.lastName();
       users.push({
-        username: randomUsername,
-        email: randomEmail,
-        fname: randomFname,
-        lname: randomLname
+        address: faker.address.streetAddress(),
+        city: faker.address.city(),
+        state: faker.address.state(),
+        zip: faker.address.zipCode(),
+        userId: Math.floor(Math.random() * 2) + 1 //double check this
       });
     }
 

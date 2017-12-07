@@ -4,17 +4,15 @@ let faker = require("faker");
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    let users = [];
+    let products = [];
     for (let i = 0; i < 3; i++) {
-      let randomUsername = faker.internet.userName();
-      let randomEmail = faker.internet.email();
-      let randomFname = faker.name.firstName();
-      let randomLname = faker.name.lastName();
-      users.push({
-        username: randomUsername,
-        email: randomEmail,
-        fname: randomFname,
-        lname: randomLname
+      products.push({
+        sku: faker.random.number(),
+        name: faker.commerce.productName(),
+        price: faker.commerce.price(),
+        description: faker.lorem.text(),
+        picture: 'http://lorempixel.com/640/480/technics',
+        categoryId: Math.floor(Math.random() * 2) + 1//double check
       });
     }
 
