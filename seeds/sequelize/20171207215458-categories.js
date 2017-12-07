@@ -1,5 +1,4 @@
 "use strict";
-
 let faker = require("faker");
 
 module.exports = {
@@ -7,7 +6,7 @@ module.exports = {
     let categories = [];
     for (let i = 0; i < 3; i++) {
       categories.push({
-        name: faker.commerce.department(),
+        name: faker.commerce.department()
       });
     }
 

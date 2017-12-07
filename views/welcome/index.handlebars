@@ -1,1 +1,22 @@
-<h1>Hello Express!</h1>
+<form class="form-inline" method="post" action="/">
+  <div class="input-group col-md-12">
+    <input type="text" class="search-query form-control" placeholder="Search" />
+      <span class="input-group-btn">
+        <button class="btn btn-danger" type="button">
+         <span class=" glyphicon glyphicon-search"></span>
+        </button>
+      </span>
+  </div>
+</form>
+
+<div class="row">
+  {{#each products as |product|}}
+  <div class="col-sm-4">
+    <img src="{{product.picture}}"><br>
+    {{product.name}}<br>
+    {{product.description}}<br>
+    {{product.price}}<br>
+    <p>Product Cateogry: </p>{{product.category}}
+  </div>
+  {{/each}}
+</div>

@@ -1,22 +1,23 @@
 const express = require("express");
 const app = express();
+const products = require("./routes/products");
 
 //-----------------------------------------
 // Mongoose Middleware
 //-----------------------------------------
-const mongoose = require("mongoose");
-app.use((req, res, next) => {
-  if (mongoose.connection.readyState) {
-    next();
-  } else {
-    require("./mongo")().then(() => next());
-  }
-});
+// const mongoose = require("mongoose");
+// app.use((req, res, next) => {
+//   if (mongoose.connection.readyState) {
+//     next();
+//   } else {
+//     require("./mongo")().then(() => next());
+//   }
+// });
 
 // ----------------------------------------
 // App Variables
 // ----------------------------------------
-app.locals.appName = "My App";
+app.locals.appName = "Mimir's Market";
 
 // ----------------------------------------
 // ENV
@@ -91,10 +92,7 @@ app.use(morganToolkit());
 // ----------------------------------------
 // Routes
 // ----------------------------------------
-app.use("/", (req, res) => {
-  req.flash("Hi!");
-  res.render("welcome/index");
-});
+app.use("/", products);
 
 // ----------------------------------------
 // Template Engine

@@ -1,5 +1,4 @@
 "use strict";
-
 let faker = require("faker");
 
 module.exports = {
@@ -9,8 +8,8 @@ module.exports = {
       products.push({
         sku: faker.random.number(),
         name: faker.commerce.productName(),
-        price: faker.commerce.price(),
-        description: faker.lorem.text(),
+        price: Math.floor(faker.commerce.price()),
+        description: "example description", //faker.lorem.text(),
         picture: "http://lorempixel.com/640/480/technics",
         categoryId: Math.floor(Math.random() * 2) + 1 //double check
       });

@@ -5,7 +5,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sku: DataTypes.INTEGER,
       name: DataTypes.STRING,
-      price: DataTypes.NUMBER,
+      price: DataTypes.INTEGER,
       description: DataTypes.STRING,
       picture: DataTypes.STRING,
       categoryId: DataTypes.INTEGER //double check
