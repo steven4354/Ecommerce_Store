@@ -4,9 +4,9 @@ let faker = require("faker");
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
-    let users = [];
+    let shippings = [];
     for (let i = 0; i < 3; i++) {
-      users.push({
+      shippings.push({
         address: faker.address.streetAddress(),
         city: faker.address.city(),
         state: faker.address.state(),
@@ -15,7 +15,7 @@ module.exports = {
       });
     }
 
-    return queryInterface.bulkInsert("Users", users);
+    return queryInterface.bulkInsert("Shippings", shippings);
   },
 
   down: (queryInterface, Sequelize) => {}

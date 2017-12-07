@@ -11,12 +11,12 @@ module.exports = {
         name: faker.commerce.productName(),
         price: faker.commerce.price(),
         description: faker.lorem.text(),
-        picture: 'http://lorempixel.com/640/480/technics',
-        categoryId: Math.floor(Math.random() * 2) + 1//double check
+        picture: "http://lorempixel.com/640/480/technics",
+        categoryId: Math.floor(Math.random() * 2) + 1 //double check
       });
     }
 
-    return queryInterface.bulkInsert("Users", users);
+    return queryInterface.bulkInsert("Products", products);
   },
 
   down: (queryInterface, Sequelize) => {}
