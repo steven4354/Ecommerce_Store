@@ -1,31 +1,55 @@
-const repl = require('repl').start({});
-const lodash = require('lodash');
-const helpers = require('./helpers');
+const repl = require("repl").start({});
+const lodash = require("lodash");
+const helpers = require("./helpers");
 
+var mongoose = require("mongoose");
+var repl = require("repl").start({});
+var models = {
+  mongoose: require("./models/mongoose"),
+  sequelize: require("./models/sequelize")
+};
+var helpers = require("./helpers");
 
+require("./mongo")().then(() => {
+  repl.context.models = models;
+  repl.context.helpers = helpers;
 
+  // ----------------------------------------
+  // Helpers
+  // ----------------------------------------
+  repl.context.helpers = helpers;
+  Object.keys(helpers).forEach(key => {
+    repl.context[key] = helpers[key];
+  });
 
-// ----------------------------------------
-// Libs
-// ----------------------------------------
-repl.context.lodash = lodash;
+  // ----------------------------------------
+  // Libs
+  // ----------------------------------------
+  repl.context.lodash = lodash;
 
+  // ----------------------------------------
+  // Mongoose
+  // ----------------------------------------
+  Object.keys(models.mongoose).forEach(modelName => {
+    repl.context[modelName] = mongoose.model(modelName);
+  });
 
+  // ----------------------------------------
+  // Sequelize
+  // ----------------------------------------
+  Object.keys(models.sequelize).forEach(modelName => {
+    repl.context[modelName] = models.sequelize[modelName];
+  });
 
-// ----------------------------------------
-// Helpers
-// ----------------------------------------
-repl.context.helpers = helpers;
-Object.keys(helpers).forEach(key => {
-  repl.context[key] = helpers[key];
+  // ----------------------------------------
+  // Logging
+  // ----------------------------------------
+  repl.context.lg = data => {
+    if (Array.isArray(data)) {
+      if (data.length && data[0].dataValues) {
+        data = data.map(item => item.dataValues);
+      }
+    }
+    console.log(data);
+  };
 });
-
-
-// ----------------------------------------
-// Logging
-// ----------------------------------------
-repl.context.lg = console.log;
-
-
-
-
