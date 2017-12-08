@@ -26,7 +26,7 @@ router.get("/", async function(req, res, next) {
 router.post("/products/searchbyname", async function(req, res, next) {
   try {
     let result = await Products.findAll(
-      {where: {name: {$like: `%${req.body.search}%`}}}
+      {where: {name: {$iLike: `%${req.body.search}%`}}}
     );
     let categoriesResults = await Categories.findAll();
 
@@ -42,20 +42,30 @@ router.post("/products/searchbyname", async function(req, res, next) {
 router.post("/products/filter", async function(req, res, next) {
   try {
 
-    let categoryId = await Cate
-    let result = await Categories.findById
-    let result = await Products.findAll({
+    let categoryObj = await Categories.findAll({
       where: {
-        price: {
-          $lte: req.body.maxprice,
-          $gte: req.body.minprice
-        }
+        name: {$iLike: `%${req.body.categories}%`}
       }
-    }, {
-      include: [{ model: Categories }]
     })
 
-    let categoriesResults = await Categories.findAll();
+    let categoryObjId = parseInt(categoryObj[0].id)
+
+    console.log('categoryObjId: ' + categoryObjId);
+
+    let result = await Products.findAll({
+      where: {
+        $and: [
+          {
+            price: {
+              $lte: req.body.maxprice,
+              $gte: req.body.minprice
+          }},
+          { categoryId: categoryObjId }
+        ]
+      }
+    })
+
+    //setup mongoose and use the repl on this 
 
     res.render("welcome/index", {
       products: result,
@@ -65,17 +75,5 @@ router.post("/products/filter", async function(req, res, next) {
     res.status(500).send(e.stack);
   }
 })
-
-// router.post("/products/searchby", async function(req, res, next) {
-//   try {
-//     let result = await Products.findAll(
-//       {where: {name: {$like: `%${req.body.search}%`}}}
-//     );
-//
-//     res.render("welcome/index", { products: result });
-//   } catch (e) {
-//     res.status(500).send(e.stack);
-//   }
-// })
 
 module.exports = router;

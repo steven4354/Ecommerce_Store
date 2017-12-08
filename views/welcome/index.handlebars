@@ -16,9 +16,9 @@
     <div class="form-group">
       <div class="col-sm-3">
         <label for="categories">Categories</label>
-        <select class="form-control" id="categories">
+        <select name="categories" class="form-control" id="categories">
           {{#each categories as |category|}}
-            <option>{{category.name}}</option>
+            <option value={{category.name}}>{{category.name}}</option>
           {{/each}}
         </select>
       </div>
@@ -40,7 +40,7 @@
 <div style="margin-top:40px;" class="container">
   <div class="row">
     {{#each products as |product|}}
-    <div class="col-sm-4">
+    <div class="col-md-4 col-xs-12 col-sm-12">
       <img src="{{product.picture}}" height="200"><br>
       {{product.name}}<br>
       {{product.description}}<br>

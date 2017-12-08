@@ -1,7 +1,5 @@
 const repl = require("repl").start({});
 const lodash = require("lodash");
-const helpers = require("./helpers");
-
 var mongoose = require("mongoose");
 var models = {
   mongoose: require("./models/mongoose"),
