@@ -1,22 +1,52 @@
-<form class="form-inline" method="post" action="/">
-  <div class="input-group col-md-12">
-    <input type="text" class="search-query form-control" placeholder="Search" />
-      <span class="input-group-btn">
-        <button class="btn btn-danger" type="button">
-         <span class=" glyphicon glyphicon-search"></span>
-        </button>
-      </span>
-  </div>
-</form>
+<div class="container">
+  <form class="form-inline" method="post" action="/products/searchbyname">
+    <div class="input-group col-sm-12">
+      <input name="search" type="text" class="search-query form-control" placeholder="Search for a product name." />
+        <span class="input-group-btn">
+          <button class="btn btn-danger" type="submit">
+           <span class=" glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+    </div>
+  </form>
+</div>
 
-<div class="row">
-  {{#each products as |product|}}
-  <div class="col-sm-4">
-    <img src="{{product.picture}}" height="200"><br>
-    {{product.name}}<br>
-    {{product.description}}<br>
-    {{product.price}}<br>
-    <p>Product Cateogry: </p>{{product.category}}
+<div style="margin-top:10px;" class="container">
+  <form action="/products/filter" method="post">
+    <div class="form-group">
+      <div class="col-sm-3">
+        <label for="categories">Categories</label>
+        <select class="form-control" id="categories">
+          {{#each categories as |category|}}
+            <option>{{category.name}}</option>
+          {{/each}}
+        </select>
+      </div>
+      <div class="col-sm-3">
+        <label for="minprice">Min. Price</label>
+        <input id="minprice" name="minprice" type="text" class="form-control" placeholder="0.99" />
+      </div>
+      <div class="col-sm-3">
+        <label for="maxprice">Max. Price</label>
+        <input id="maxprice" name="maxprice" type="text" class="form-control" placeholder="1000" />
+      </div>
+      <div class="col-sm-3">
+        <button style="margin-top:22px;" type="submit" class="btn btn-primary">Submit</button>
+      </div>
+    </div>
+  </form>
+</div>
+
+<div style="margin-top:40px;" class="container">
+  <div class="row">
+    {{#each products as |product|}}
+    <div class="col-sm-4">
+      <img src="{{product.picture}}" height="200"><br>
+      {{product.name}}<br>
+      {{product.description}}<br>
+      {{product.price}}<br>
+      <p>Product Cateogry: </p>{{product.categoryId}}
+    </div>
+    {{/each}}
   </div>
-  {{/each}}
 </div>

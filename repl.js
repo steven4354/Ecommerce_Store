@@ -3,7 +3,6 @@ const lodash = require("lodash");
 const helpers = require("./helpers");
 
 var mongoose = require("mongoose");
-var repl = require("repl").start({});
 var models = {
   mongoose: require("./models/mongoose"),
   sequelize: require("./models/sequelize")
