@@ -1,13 +1,53 @@
-Austin
+# eCommerce Store Source Code
 
-Dave/Steven
+An eCommerce Store with a fully fledged cart (using express cookies) and storage of user login and products (using nosql and postgres databases)
 
-# project_mimirs_market
+## Demo
 
-A Viking eCommerce store for Thunder Gods that like to buy "Antique Wooden
-Pizzas"
+![Alt text](./images/1.png?raw=true "Title")
+![Alt text](./images/2.png?raw=true "Title")
+![Alt text](./images/3.png?raw=true "Title")
+![Alt text](./images/4.png?raw=true "Title")
+![Alt text](./images/5.png?raw=true "Title")
 
-#Overview
+### Key Technologies Used and Technical Challenges 
+
+Technologies used: 
+- MongoDB 
+- Postgres 
+- Sequelize
+- Mongooose
+- Cookies and Sessions
+
+Challenges:
+- Integration of two different databases -> split different functions for the databases, one database held products and the other held user login information 
+- Creation of a cart that persisted with the user in multiple visits -> utilized Express's cookie session to store cart information in a cookie allowed us to keep database free of cart data 
+
+## Deployment
+
+### Prerequisites
+
+What things you need to install the software
+
+* node
+* npm
+* mongodb
+* postgres
+
+### How to deploy on your local machine
+
+```
+git clone <project-folder-on-github>
+cd <cloned-project-folder-on-your-local-machine>
+npm install
+node app.js
+```
+
+## Authors
+
+* **Steven Li** - _Initial work_ -
+
+## Additional Notes and Spec Features
 
 SQL
 Products/Searching
