@@ -1,6 +1,6 @@
 # eCommerce Store Source Code
 
-An eCommerce Store with a fully fledged cart (using express cookies) and storage of user login and products (using nosql and postgres databases)
+An eCommerce Store with a fully fledged cart (using express cookies) and storage of user login and products (using nosql and postgres databases). Utilizes Stripe for checkout and payments
 
 ## Demo
 
